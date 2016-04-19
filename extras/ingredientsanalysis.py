@@ -14,9 +14,9 @@ from nltk.corpus import stopwords
 cachedStopWords = stopwords.words("english")
 
 # url for get requests
-url1 = """https://api.nutritionix.com/v1_1/search/?brand_id=51db37d0176fe9790a899db2&results=0%3A50&cal_min=0&cal_max=50000&fields=*&appId=1418dae2&appKey=0e7d0054a8b0aacd76a5e9f141a90a32"""
-url2 = """https://api.nutritionix.com/v1_1/search/?brand_id=51db37d0176fe9790a899db2&results=50%3A100&cal_min=0&cal_max=50000&fields=*&appId=1418dae2&appKey=0e7d0054a8b0aacd76a5e9f141a90a32"""
-url3 = """https://api.nutritionix.com/v1_1/search/?brand_id=51db37d0176fe9790a899db2&results=100%3A150&cal_min=0&cal_max=50000&fields=*&appId=1418dae2&appKey=0e7d0054a8b0aacd76a5e9f141a90a32"""
+url1 = """https://api.nutritionix.com/v1_1/search/?brand_id=51db37d0176fe9790a899db2&results=0%3A50&cal_min=0&cal_max=50000&fields=*&appId=[]&appKey=[]"""
+url2 = """https://api.nutritionix.com/v1_1/search/?brand_id=51db37d0176fe9790a899db2&results=50%3A100&cal_min=0&cal_max=50000&fields=*&appId=[]&appKey=[]"""
+url3 = """https://api.nutritionix.com/v1_1/search/?brand_id=51db37d0176fe9790a899db2&results=100%3A150&cal_min=0&cal_max=50000&fields=*&appId=[]&appKey=[]"""
 
 #list of urls
 

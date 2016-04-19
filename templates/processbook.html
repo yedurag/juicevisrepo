@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juice Vis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="{{ url_for('static', filename='bootstrap-select.css')}}" rel='stylesheet'/>
+	<link href="{{ url_for('static', filename='dc.css')}}" rel='stylesheet'/>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="{{ url_for('static', filename='bootstrap-select.js')}}"></script>
+	<script src="//dc-js.github.io/dc.js/js/d3.js"></script>
+	<script src="//dc-js.github.io/dc.js/js/crossfilter.js"></script>
+	<script src="//dc-js.github.io/dc.js/js/dc.js"></script>
+
+</head>
+<body>
+	
+	<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+		</button>
+		<a class="navbar-brand" href="/">Juice Vis</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/ingredients">Ingredients</a></li>
+		<li class="active"><a href="/processbook">Process Book</a></li>
+		</ul>
+		</div>
+	</div>
+	</nav>
+  
+<div class="container">
+  <p>In this section I will try to explain how this web app was made. The explanation is brief and step by step. All the files are uploaded in the github repo given below</p>
+  <p> </p>
+  <h4>Steps in the Making</h4>
+  <h5>Step 1. Initial Planning and Data Study</h5>
+  <p>	In this step I came up with an initial plan for the project. About two days were spent in studying the data, figuring out the requirements and
+		understanding the working of the Nutritionix API. The files- products.csv, fruits.csv and output1 in the github repo are actually the initial data files used for
+		the data study. After that two python files were developed to clean the data. These are initialanalysis.py and ingredientsanalysis.py. </p>
+	<p> </p>
+	
+	<h5>Step 2. Python Flask Phase</h5>
+	<p>	In this step I used Flask, SQL Alchemy and Postgres to develop a back end system to pull the data and inject it to the front end upon request.
+		I used requests library for data pull. The following files can be found in the github repo- </p>
+		
+	<p> app.py - The main flask app file </p>
+	
+	<p> config.py - My configs for the app locally and in heroku </p>
+	
+	<p> manage.py - For db migration </p>
+	
+	<p> models.py - My sql alchemy db model </p>
+	
+	<p> In this phase I heavily relied upon the <a href="https://realpython.com/blog/python/flask-by-example-part-1-project-setup/">Flask by Example</a> 
+	tutorial that I did about 6 months back. It is a great tutorial by my favorite python teacher - Michael Herman. I am grateful to him. </p>
+	
+	<h5>Step 3. Front End Phase</h5>
+	
+	<p> By now I had a good understanding of the data and knew how the visualizations should look like. I drew the design on paper. The images can be found in the repo. </p>
+	
+	<p> Once the design was complete, I went in and coded it using the dc.js, d3.js and crossfilter.js. Bootstrap was also used extensively to beautify the dashboard. </p>
+	
+	<p> In the end I hosted the app in Heroku. While doing this I incorporated the redis task queue to make tha app fail safe. </p>
+	
+	<p> Thank you for your time. My work is not flawless. But I am trying to improve and putting in the best effort I can! </p>
+	
+	<p> Yours, </p>
+	
+	<p> Yedurag Babu </p>
+	
+   
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  		
+
+
+</body>
+</html>

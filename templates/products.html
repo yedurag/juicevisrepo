@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juice Vis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="{{ url_for('static', filename='bootstrap-select.css')}}" rel='stylesheet'/>
+	<link href="{{ url_for('static', filename='dc.css')}}" rel='stylesheet'/>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="{{ url_for('static', filename='bootstrap-select.js')}}"></script>
+	<script src="//dc-js.github.io/dc.js/js/d3.js"></script>
+	<script src="//dc-js.github.io/dc.js/js/crossfilter.js"></script>
+	<script src="//dc-js.github.io/dc.js/js/dc.js"></script>
+	<script src="{{ url_for('static', filename='products.js')}}"></script>
+<style>
+.selectBrand{
+max-width:500px;}
+
+
+.stackChart1{
+height:400px;}
+
+.stackChart2{
+height:200px;}
+
+.mainChart1{
+height:600px;}
+
+.mainChart2{
+height:400px;}
+
+
+</style>
+		
+</head>
+<body>
+	
+	<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+		</button>
+		<a class="navbar-brand" href="/">Juice Vis</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/products">Products</a></li>
+        <li><a href="/ingredients">Ingredients</a></li>
+		<li><a href="/processbook">Process Book</a></li>
+		</ul>
+		</div>
+	</div>
+	</nav>
+  
+<div class="container">
+<div class="container">
+<h4><a href="#brandSelect" data-toggle="collapse">Select the Brand</a> </h4>
+		
+<div id="brandSelect" class="collapse in">
+<form role="form" method="post" onsubmit="return false">
+<div class="form-group">
+<select class="selectpicker selectBrand show-menu-arrow show-tick" data-size="10" data-live-search="true">
+<option>Juicy Juice</option>
+<option>Old Orchard 100 Juice</option>
+<option>Welch's Juices</option>
+</select>
+<p> </p>
+<p> </p>
+<button type="submit" class="btn btn-primary" id="brandButton">Fetch Latest Data</button>
+<p> </p>
+
+</div>
+</form>
+</div>
+
+<img id='ajaxLoader' src="{{ url_for('static', filename='loader.gif')}}" />
+<div class="alert alert-danger" role="alert" id="datapullAlert">
+<span class="glyphicon glyphicon-exclamation-sign"></span>
+<span class="sr-only">Error:</span>
+There was an error for this fetch query. The API may have exceeded its limits.
+Please try again with another combination
+</div>
+</div>
+
+
+<div class = "container" id = "visAll">
+<div class="row">
+<div>
+<div class="dc-data-count">
+            <span class="filter-count"></span> selected out of <span class="total-count"></span> records | 
+			<a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a>
+        </div>
+    </div>
+    
+</div>
+
+<div class = "row">
+<h4><a href="#stacktotal" data-toggle="collapse">Global Filters</a> </h4>
+<div id="stacktotal" class="collapse in">
+
+<div class = "col-lg-4 col-md-4 col-sm-12 col-xs-12">
+<h5><a href="#stack1" data-toggle="collapse">By Flavor</a> </h5>
+<div id="stack1" class="collapse in">
+<div id="stackrowChart1" class="stackChart1">
+<h5>No. of products on x axis</h5>         
+</div>
+</div>
+</div>
+<div class = "col-lg-4 col-md-4 col-sm-12 col-xs-12">
+<h5><a href="#stack2" data-toggle="collapse">By Serving Unit</a> </h5>
+<div id="stack2" class="collapse in">
+<div id="stackrowChart2" class="stackChart1">
+<h5>No. of products on x axis</h5>         
+</div>
+</div>
+</div>
+<div class = "col-lg-4 col-md-4 col-sm-12 col-xs-12">
+<div class = "row">
+<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h5><a href="#stack3" data-toggle="collapse">By Calorie Range</a> </h5>
+<div id="stack3" class="collapse in">
+<div id="stackbarChart1" class="stackChart2">
+<h5>y axis - No. of products; x axis - Calorie</h5>         
+</div>
+</div>
+</div>
+<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<h5><a href="#stack4" data-toggle="collapse">By Total Carbs (grams)</a> </h5>
+<div id="stack4" class="collapse in">
+<div id="stackbarChart2" class="stackChart2">
+<h5>y axis - No. of products; x axis - Total Carbs(grams)</h5>         
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<h4><a href="#slice1" data-toggle="collapse">All Products</a> </h4>
+
+<div id="slice1" class="collapse in">
+
+<div id="sliceChart1" class="mainChart1">
+<h5>y axis - Avg Calorie; x axis - Avg Total Carbs(grams); size - Avg Vitamin C % Daily Value</h5>
+<h6>* % Daily Values are based on a 2000 calorie diet. </h6>         
+</div>
+</div>
+
+
+<h4><a href="#slice2" data-toggle="collapse">Product Details</a> </h4>
+
+<div id="slice2" class="collapse in">
+
+
+<table class='table table-hover' id='sliceChart2'>
+<thead>
+<tr class='header'>
+<th>Product</th>
+<th>Quantity</th>
+<th>Unit</th>
+<th>Ingredients</th>
+<th>Carbs(grams)</th>
+<th>Calories</th>
+<th>Vit.C Daily Value %</th>
+<th>Updated at</th>
+</tr>
+</thead>
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+</div> 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  		
+
+
+</body>
+</html>

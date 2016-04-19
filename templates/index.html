@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juice Vis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href="{{ url_for('static', filename='bootstrap-select.css')}}" rel='stylesheet'/>
+	<link href="{{ url_for('static', filename='dc.css')}}" rel='stylesheet'/>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script src="{{ url_for('static', filename='bootstrap-select.js')}}"></script>
+	<script src="//dc-js.github.io/dc.js/js/d3.js"></script>
+	<script src="//dc-js.github.io/dc.js/js/crossfilter.js"></script>
+	<script src="//dc-js.github.io/dc.js/js/dc.js"></script>
+
+</head>
+<body>
+	
+	<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+		</button>
+		<a class="navbar-brand" href="/">Juice Vis</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/ingredients">Ingredients</a></li>
+		<li><a href="/processbook">Process Book</a></li>
+		</ul>
+		</div>
+	</div>
+	</nav>
+  
+<div class="container">
+  <p>This is a simple demo web application to explore the products and ingredients for main juice brands like the Juicy Juice. Right now the app is limited to three juice brands. </p>
+  <p> </p>
+  <p>Head over to the products or ingredients page to start exploring. The process book is about how I developed this application in three days.</p>
+  <p> </p>
+  <h4>Powered by</h4>
+  <p>This web application is powered by-</p>
+  <p><a href="http://www.nutritionix.com/business/api">Nutritionix API</a> the data source, </p>
+  <p><a href="http://flask.pocoo.org/">Flask</a> the python web framework, </p>
+  <p><a href="https://dc-js.github.io/dc.js/">Dc.js</a> the dimensional charting javascript library, </p>
+  <p><a href="http://square.github.io/crossfilter/">Crossfilter.js</a> the multidimensional filtering javascript library, </p>
+  <p><a href="https://d3js.org/">D3.js</a> the data driven document manipulating javascript library, </p>
+  <p><a href="https://silviomoreto.github.io/bootstrap-select/">Bootstrap-select</a> the jquery plugin for dropdowns, </p>
+  <p><a href="http://getbootstrap.com/">Bootstrap</a> the html, css and js framework for responsive layouts, </p>
+  <p> and </p>
+  <p><a href="https://jquery.com/">Jquery</a> the feature rich javascript library </p>
+   
+</div>
+</body>
+</html>

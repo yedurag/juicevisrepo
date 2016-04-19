@@ -30,8 +30,8 @@ stemmer = PorterStemmer()
 # configs
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
-appId = "1418dae2"
-appKey = "0e7d0054a8b0aacd76a5e9f141a90a32"
+appId = "[YourAppID]"
+appKey = "[YourAppKey]"
 db = SQLAlchemy(app)
 
 q = Queue(connection=conn)
